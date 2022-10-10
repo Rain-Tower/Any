@@ -6,7 +6,7 @@ const { Routes } = require('discord.js');
 module.exports = {
     name: 'guildCreate', 
     async execute (client, guild) {
-        await (client.channels.resolve('1001093728674525194')).send(`New guild! Name: '${guild.name}', owner: '${guild.owner}`);
+        await (client.channels.resolve('1001093728674525194')).send(`New guild! Name: '${guild.name}', owner: '${guild.ownerId}`);
         const Guild = await guilds.findOne({id: guild.id});
         if(!Guild) new guilds({id: guild.id, prefix: '-', slashCommands: true}).save();
 

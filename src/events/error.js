@@ -16,7 +16,7 @@ module.exports = {
         .setColor(Colors.Red);
     
     const development = await guilds.findOne({development: true});
-    if(!development?.log.id) return;
+    if(!development?.log) return;
 
     await (client.channels.resolve(development.log.id)).send({content: '<@920325546200694905>', embeds: [log]});
     await interaction.editReply({content: 'There was a problem when executing this command'})

@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, Colors, EmbedBuilder, Formatters } = require('discord.js');
+const { Colors, EmbedBuilder, time } = require('discord.js');
 
 module.exports = {
     name: 'status',
@@ -19,7 +19,7 @@ module.exports = {
             .setFields(
                 { name: 'My ping', value: `${ping} ms` }, 
                 { name: 'Websocket ping', value: `${client.ws.ping} ms` },
-                { name: 'Online since', value: `${Formatters.time(onlineSice)} (${Formatters.time(onlineSice, 'R')})`}
+                { name: 'Online since', value: `${time(onlineSice)} (${time(onlineSice, 'R')})`}
             )
             .setColor(color);
 

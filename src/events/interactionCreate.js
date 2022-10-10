@@ -8,6 +8,7 @@ module.exports = {
         if(interaction.isChatInputCommand()){
             const command = client.commands.get(interaction.commandName);
             if(!command) return;
+            if(!interaction.guild) return;
 
             try{
                 await command.run({client, interaction});
@@ -25,7 +26,7 @@ module.exports = {
                 const development = await guilds.findOne({development: true});
                 if(!development?.log.id) return;
 
-                await (client.channels.resolve(development.log.id)).send({content: '<@920325546200694905>', embeds: [log]});
+                await (client.channels.resolve(development.log)).send({content: '<@920325546200694905>', embeds: [log]});
                 await interaction.editReply({content: 'There was a problem when executing this command', ephemeral: true})
             }
         }

@@ -6,11 +6,7 @@ module.exports = model('guilds', new Schema({
     bot_manager: String,
     prefix: { type: String, default: '-' },
     slashCommands: { type: Boolean, default: true },
-    disabled_functions: Array,
-    log: { 
-        enabled: Boolean,
-        id: String
-    },
+    log: String,
     moderation: {
         enabled: Boolean, 
         id: String

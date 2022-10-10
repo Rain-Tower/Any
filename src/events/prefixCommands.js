@@ -5,7 +5,7 @@ const guilds = require('../util/models/guild');
 module.exports = {
     name: 'messageCreate', 
     async execute (client, message) {
-        if(message.system || message.author.bot) return;
+        if(message.system || message.author.bot || !message.guild) return;
         const guild = await guilds.findOne({id: message.guild.id});
         const devguild = await guilds.findOne({development: true});
 
@@ -34,7 +34,7 @@ module.exports = {
                 ])
                 .setColor(Colors.Red);
             
-            if(!devguild?.log.id) return;
+            if(!devguild?.log) return;
 
             await (client.channels.resolve(devguild.log.id)).send({content: '<@920325546200694905>', embeds: [log]});
             await message.reply({content: 'There was a problem when executing this command'})
